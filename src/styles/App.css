@@ -1,0 +1,6 @@
+/* src/styles/App.css */
+main {
+  padding-top: 80px; /* Adjust based on header height */
+  padding-bottom: 2rem;
+  min-height: calc(100vh - 120px); /* Full height minus header/footer */
+}
