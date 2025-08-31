@@ -17,12 +17,17 @@ const EditProductPage = () => {
         const res = await api.get(`/products/${id}`);
         const p = res.data;
         setForm({
-          name: p.name || '',
-          description: p.description || '',
-          price: ((p.price || 0) / 100).toFixed(2),
-          category: p.category || '',
-          tag: p.tag || '',
-          imageUrl: p.imageUrl || ''
+          sku: p.sku || '',
+          productName: p.name || '',
+          productDescription: p.description || '',
+          brand: p.brand || '',
+          productCategory: p.category || '',
+          productPrice: p.price ? ((p.price || 0) / 100).toFixed(2) : '',
+          productSalePrice: p.salePrice ? (p.salePrice / 100).toFixed(2) : '',
+          productImages: Array.isArray(p.images) ? p.images.join('\n') : (p.images || ''),
+          currency: p.currency || 'USD',
+          stockQuantity: p.stockQuantity || 0,
+          productStatus: p.status || 'ACTIVE',
         });
       } catch (err) {
         console.error(err);
@@ -43,7 +48,23 @@ const EditProductPage = () => {
     e.preventDefault();
     setSaving(true);
     try {
-      const payload = { ...form, price: Math.round(parseFloat(form.price || 0) * 100) };
+      const images = (form.productImages || '')
+        .split(/\r?\n/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      const payload = {
+        sku: form.sku,
+        name: form.productName,
+        description: form.productDescription,
+        brand: form.brand,
+        category: form.productCategory,
+        price: Math.round(parseFloat(form.productPrice || 0) * 100),
+        salePrice: form.productSalePrice ? Math.round(parseFloat(form.productSalePrice) * 100) : undefined,
+        images,
+        currency: form.currency,
+        stockQuantity: form.stockQuantity ? parseInt(form.stockQuantity, 10) : 0,
+        status: form.productStatus,
+      };
       await api.put(`/products/${id}`, payload);
       navigate('/category/' + (form.category || 'all'));
     } catch (err) {
