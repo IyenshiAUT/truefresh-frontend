@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# TrueFresh — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the frontend for TrueFresh, a small e-commerce React application (product listing, cart, checkout, and authentication).
 
-## Available Scripts
+Key features
+- Browse products and view product cards
+- Add/remove items to a cart and view cart panel
+- Authentication (login/register) with token-based auth stored in localStorage
+- Checkout flow and cart persistence via context
 
-In the project directory, you can run:
+Tech stack
+- React 19 (Create React App)
+- Tailwind CSS + PostCSS
+- Axios for API requests
+- React Router for navigation
+- Headless UI & Heroicons for UI primitives
+- react-hot-toast for notifications
 
-### `npm start`
+Quick start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Prerequisites
+- Node.js (LTS recommended)
+- npm (comes with Node.js)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install dependencies
 
-### `npm test`
+```powershell
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run development server
 
-### `npm run build`
+```powershell
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Build for production
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```powershell
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Where to configure the backend API
 
-### `npm run eject`
+API calls are made with Axios from `src/api/axiosConfig.js`. By default the file sets:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+baseURL: 'http://localhost:8080/api'
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If your backend runs elsewhere, update the `baseURL` in that file or replace it with an environment variable. The Axios instance also attaches an `Authorization: Bearer <token>` header when `localStorage.accessToken` exists.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Project structure (important files)
+- `src/` — main source
+	- `src/api/axiosConfig.js` — axios instance and auth interceptor
+	- `src/components/Products/ProductCard.js` — product card UI
+	- `src/components/Cart/CartPanel.js` — cart UI
+	- `src/contexts/` — `AuthContext.js`, `CartContext.js`
+	- `src/pages/` — `HomePage.js`, `ProductsPage.js`, `CartPage.js`, `CheckoutPage.js`, `LoginPage.js`, `RegisterPage.js`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Scripts
+- `npm start` — start dev server
+- `npm run build` — production build
+- `npm test` — run test runner
+- `npm run eject` — eject CRA (one-way)
 
-## Learn More
+Tips & notes
+- Auth token key: `accessToken` in localStorage. The frontend expects a JWT-like token and sends it as `Authorization: Bearer <token>`.
+- When changing the API URL, prefer using an env var (for example `REACT_APP_API_URL`) and read it inside `src/api/axiosConfig.js`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributing
+- Open an issue or submit a pull request. Keep changes small and focused. Add tests for new features where possible.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+License
+- This project doesn't include a license file; add one if you plan to open-source it.
