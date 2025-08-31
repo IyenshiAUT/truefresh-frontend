@@ -30,7 +30,7 @@ const ProfilePage = () => {
   };
 
   const onDelete = async () => {
-    if (!confirm('Delete account? This cannot be undone.')) return;
+    if (!window.confirm('Delete account? This cannot be undone.')) return;
     try {
       await deleteAccount();
       navigate('/');
