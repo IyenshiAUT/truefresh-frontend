@@ -19,9 +19,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "run-build" : "npm run build",
+  "start": "react-scripts start",
+  "prebuild": "node scripts/copy-favicon.js",
+  "build": "react-scripts build",
+  "run-build" : "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 import Spinner from '../components/Common/Spinner';
+import toast from 'react-hot-toast';
 
 const ProfilePage = () => {
   const { user, loading, updateProfile, deleteAccount } = useContext(AuthContext);
@@ -19,11 +20,10 @@ const ProfilePage = () => {
     setSaving(true);
     try {
       await updateProfile(form);
-      // simple feedback
-      alert('Profile updated');
+      toast.success('Profile updated');
     } catch (err) {
       console.error(err);
-      alert('Failed to update profile');
+      toast.error('Failed to update profile');
     } finally {
       setSaving(false);
     }
@@ -33,10 +33,11 @@ const ProfilePage = () => {
     if (!window.confirm('Delete account? This cannot be undone.')) return;
     try {
       await deleteAccount();
+      toast.success('Account deleted');
       navigate('/');
     } catch (err) {
       console.error(err);
-      alert('Failed to delete account');
+      toast.error('Failed to delete account');
     }
   };
 

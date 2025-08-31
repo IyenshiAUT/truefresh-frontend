@@ -34,9 +34,18 @@ const Footer = () => {
             <p className="text-sm text-neutral-400">✓ Sourced Today, Delivered Today</p>
             <p className="text-sm text-neutral-400">✓ Trusted Cash on Delivery</p>
           </div>
+          <div>
+            <h4 className="font-semibold text-white mb-4">Contact</h4>
+            <p className="text-sm text-neutral-400">Phone: <a href="tel:+94112056789" className="hover:text-white">+94 112 406 789</a></p>
+            <p className="text-sm text-neutral-400">Email: <a href="mailto:support@truefresh.lk" className="hover:text-white">support@truefresh.lk</a></p>
+            <p className="text-sm text-neutral-400 mt-2">Open: <span className="font-medium text-white">Mon–Sat</span> 7:00 AM — 7:00 PM</p>
+          </div>
         </div>
         <div className="mt-12 pt-8 border-t border-neutral-700 text-center text-sm text-neutral-500">
-          <p>&copy; {year} TrueFresh. All Rights Reserved. Built with care in Sri Lanka.</p>
+          <div className="flex items-center justify-center gap-3">
+            <img src="/logo192.png" alt="TrueFresh" className="h-8 w-8" />
+            <p>&copy; {year} TrueFresh. All Rights Reserved. Built with care in Sri Lanka.</p>
+          </div>
         </div>
       </div>
     </footer>

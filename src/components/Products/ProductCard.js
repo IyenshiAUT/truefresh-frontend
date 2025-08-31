@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <div className="relative">
-        <img src={product.imageUrl || `https://via.placeholder.com/400x300?text=${product.name}`} alt={product.name} className="w-full h-48 object-cover" />
+  <img src={product.imageUrl || `https://via.placeholder.com/400x300?text=${product.name}`} alt={product.name} className="w-full h-48 object-cover img-zoom" />
         <div className="absolute top-2 left-2 bg-brand-blue/90 text-white text-xs font-bold px-2 py-1 rounded-full">
           {product.tag || 'Fresh'}
         </div>
