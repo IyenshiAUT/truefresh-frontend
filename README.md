@@ -68,6 +68,10 @@ Tips & notes
 - Auth token key: `accessToken` in localStorage. The frontend expects a JWT-like token and sends it as `Authorization: Bearer <token>`.
 - When changing the API URL, prefer using an env var (for example `REACT_APP_API_URL`) and read it inside `src/api/axiosConfig.js`.
 
+Quick tip: "Shop Now" scroll behavior
+
+The homepage includes a "Shop Now" action that scrolls smoothly to the "Browse Our Categories" section. That section uses the id `browse-categories`. If you want to change where the button scrolls, update the id in `src/pages/HomePage.js` and any link that points to `/#browse-categories`.
+
 Contributing
 - Open an issue or submit a pull request. Keep changes small and focused. Add tests for new features where possible.
 

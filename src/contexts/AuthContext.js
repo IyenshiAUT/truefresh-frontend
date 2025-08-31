@@ -39,8 +39,23 @@ export const AuthProvider = ({ children }) => {
     navigate('/login');
   };
 
+  const updateProfile = async (updatedData) => {
+    if (!user || !user.id) throw new Error('No authenticated user');
+    const response = await api.put(`/users/${user.id}`, updatedData);
+    const updatedUser = response.data;
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    setUser(updatedUser);
+    return updatedUser;
+  };
+
+  const deleteAccount = async () => {
+    if (!user || !user.id) throw new Error('No authenticated user');
+    await api.delete(`/users/${user.id}`);
+    logout();
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updateProfile, deleteAccount }}>
       {children}
     </AuthContext.Provider>
   );

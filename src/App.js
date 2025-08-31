@@ -8,6 +8,9 @@ import ProtectedRoute from './components/Common/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
+import ProfilePage from './pages/ProfilePage';
+import AddProductPage from './pages/AddProductPage';
+import EditProductPage from './pages/EditProductPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
@@ -25,6 +28,9 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/products/add" element={<AddProductPage />} />
+          <Route path="/products/:id/edit" element={<EditProductPage />} />
         </Route>
       </Routes>
     </Layout>
