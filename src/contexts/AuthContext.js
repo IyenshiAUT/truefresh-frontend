@@ -60,9 +60,43 @@ export const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
-  const updateProfile = async (updatedData) => {
+  const updateProfile = async (updatedData, userId) => {
     if (!userId) throw new Error("No authenticated user");
-    const response = await api.put(`/users/${userId}`, updatedData);
+    try {
+      const userPersonalData = {
+        customerId: userId,
+        firstName: updatedData.firstName,
+        lastName: updatedData.lastName,
+        phoneNumber: updatedData.phoneNumber,
+        dateOfBirth: updatedData.dateOfBirth,
+      };
+      const userLocationData = {
+        customerId: userId,
+        address: updatedData.address,
+        city: updatedData.city,
+        state: updatedData.state,
+      };
+      try {
+        const personalResponse = await api.put(
+          `/customers/${userId}`,
+          userPersonalData
+        );
+        const locationResponse = await api.put(
+          `/customers/${userId}/address`,
+          userLocationData
+        );
+        return {
+          personalResponse,
+          locationResponse,
+        };
+      } catch (error) {
+        console.error("Failed to update profile:", error);
+        throw error;
+      }
+    } catch (error) {
+      console.error("Failed to update profile:", error);
+      throw error;
+    }
     const updatedUser = response.data;
     localStorage.setItem("userId", updatedUser.id);
     localStorage.setItem("userName", updatedUser.username);
@@ -73,7 +107,7 @@ export const AuthProvider = ({ children }) => {
 
   const deleteAccount = async () => {
     if (!userId) throw new Error("No authenticated user");
-    await api.delete(`/users/${userId}`);
+    await api.delete(`/customers/${userId}`);
     logout();
   };
 
