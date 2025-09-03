@@ -29,8 +29,7 @@ const RegisterPage = () => {
       const username = `${firstName}${lastName ? " " + lastName : ""}`;
       await register({ username, email, password, role });
       toast.dismiss(loadingToast);
-      toast.success("Registration successful! Please sign in.");
-      navigate("/login");
+      toast.success("Registration successful! Welcome!");
     } catch (err) {
       toast.dismiss(loadingToast);
       toast.error(err.response?.data?.message || "Registration failed.");

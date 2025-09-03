@@ -40,11 +40,6 @@ export const AuthProvider = ({ children }) => {
       const { accessToken, refreshToken, userId, username } = response.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      console.log(userId, username);
-      console.log(
-        localStorage.getItem("userId"),
-        localStorage.getItem("userName")
-      );
       localStorage.setItem("userId", userId);
       localStorage.setItem("userName", username);
       setUserId(userId);
