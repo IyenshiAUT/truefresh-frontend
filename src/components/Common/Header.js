@@ -1,6 +1,6 @@
 // File: src/components/Common/Header.js
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import {
   ShoppingBagIcon,
   UserCircleIcon,
@@ -15,7 +15,7 @@ const Header = () => {
   const { userId, userName, logout } = useContext(AuthContext);
   const { cartItems, openCart } = useContext(CartContext);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
+  const navigate = useNavigate();
   const navLinkClass = ({ isActive }) =>
     `text-neutral-600 hover:text-brand-green transition-colors duration-300 ${
       isActive ? "text-brand-green font-semibold" : ""

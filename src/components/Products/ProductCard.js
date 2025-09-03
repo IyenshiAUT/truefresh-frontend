@@ -8,6 +8,12 @@ const ProductCard = ({ product }) => {
   const { addToCart, openCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
+    console.log("ProductCard - Product being added:", product);
+    console.log("ProductCard - All product keys:", Object.keys(product));
+    console.log("ProductCard - Product ID:", product.id);
+    console.log("ProductCard - Product _id:", product._id);
+    console.log("ProductCard - Product productId:", product.productId);
+    console.log("ProductCard - Product Name:", product.productName);
     addToCart(product);
     toast.success(`${product.productName} added to cart!`);
     openCart();

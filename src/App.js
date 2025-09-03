@@ -1,18 +1,19 @@
 // File: src/App.js
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
-import Layout from './components/Common/Layout';
-import ProtectedRoute from './components/Common/ProtectedRoute';
-import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
-import CheckoutPage from './pages/CheckoutPage';
-import ProfilePage from './pages/ProfilePage';
-import AddProductPage from './pages/AddProductPage';
-import EditProductPage from './pages/EditProductPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import Layout from "./components/Common/Layout";
+import ProtectedRoute from "./components/Common/ProtectedRoute";
+import HomePage from "./pages/HomePage";
+import ProductsPage from "./pages/ProductsPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import ProfilePage from "./pages/ProfilePage";
+import AddProductPage from "./pages/AddProductPage";
+import EditProductPage from "./pages/EditProductPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/order-success" element={<OrderSuccessPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/products/add" element={<AddProductPage />} />
           <Route path="/products/:id/edit" element={<EditProductPage />} />
